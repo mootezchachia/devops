@@ -65,7 +65,7 @@ stages{
             steps{
                 script{
 		        withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                   sh 'docker login -u mootezchachia1 -p $dockerhubpwd docker.io'
+                   sh 'docker login -u mootezchachia1 -p Ricci007** docker.io'
             }
 
                    sh 'docker push mootezchachia/springprojet:latest'
