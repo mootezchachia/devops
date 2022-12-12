@@ -5,14 +5,14 @@ services:
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: pass
-      MYSQL_DATABASE: achatdb   
+      MYSQL_DATABASE: devops   
     ports:
       - 3306:3306
     networks:
      - AppNet
      
   spring-boot:
-    image: mootezchachia/springprojet
+    image: mootezchachia1/devops
     container_name: spring
     ports:
       - 8082:8082
