@@ -40,13 +40,7 @@ stages{
                	 }
               }
 
-	stage("nexus") {
-            steps {
-                script {
-                    sh "mvn deploy"
-                }
-            }
-        }
+
 
 
 		stage("build jar") {
