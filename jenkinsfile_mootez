@@ -67,7 +67,7 @@ stages{
                    sh 'docker login -u mootezchachia1 -p Ricci007** docker.io'
             }
 
-                   sh 'docker push mootezchachia/springprojet:latest'
+                   sh 'docker push mootezchachia/devops:latest'
                 }
             }
         }
