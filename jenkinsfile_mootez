@@ -56,7 +56,7 @@ stages{
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t mootezchachia/devops .'
+                    sh 'sudo docker build -t mootezchachia/devops .'
                 }
             }
         }
