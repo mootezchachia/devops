@@ -9,35 +9,47 @@ pipeline{
         
         stages{
 
-
-                            stage('Test unitaires + mock') {
-                              steps {
-                               script {
-                                sh 'echo "Test is processing ...."'
-                                sh 'mvn clean test'
-                               }
-
-                              }
-
+            stage('clean') {
+                steps {
+                    script {
+                        sh 'mvn clean'
                             }
+                       }
+          }
 
-               stage('sonnarqube(qualite de code'){
-                  steps{
+            stage('Test unitaires + mock') {
+                steps {
+                    script {
+                        sh 'mvn test'
+                            }
+                       }
+          }
+ 
+            stage('sonnarqube(qualite de code'){
+                steps{
                       script{
-			      withSonarQubeEnv('sonar') {
-			      sh "mvn compile sonar:sonar"
+                 	      withSonarQubeEnv('sonar') {
+			              sh "mvn compile sonar:sonar"
                        	     	}
-			      timeout(time: 1, unit: 'HOURS') {
-			      def qg = waitForQualityGate()
-				      if (qg.status != 'OK') {
-					   error "Pipeline aborted due to quality gate failure: ${qg.status}"
-				      }
+			             timeout(time: 1, unit: 'HOURS') {
+			               def qg = waitForQualityGate()
+				               if (qg.status != 'OK') {
+					               error "Pipeline aborted due to quality gate failure: ${qg.status}"
+				                }
                     		}
-		    	    sh "mvn clean install"
-
                  	}
                	 }
               }
+
+                stage('nexus'){
+            steps{
+                script{
+                    sh 'mnv deploy'
+                }
+            }
+        }
+
+
 		stage("build jar") {
             steps {
                 script {
@@ -45,7 +57,10 @@ pipeline{
                 }
             }
         }
-	        stage('Build docker image'){
+
+
+
+        stage('Build docker image'){
             steps{
                 script{
                     sh 'docker build -t mootezchachia/springprojet .'
@@ -60,6 +75,14 @@ pipeline{
 }
 
                    sh 'docker push mootezchachia/springprojet:latest'
+                }
+            }
+        }
+        
+        stage("build jar") {
+            steps {
+                script {
+                    sh "docker up"
                 }
             }
         }
