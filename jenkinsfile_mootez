@@ -56,7 +56,7 @@ stages{
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t mootezchachia/springprojet .'
+                    sh 'docker build -t mootezchachia/devops .'
                 }
             }
         }
