@@ -12,21 +12,10 @@ import static org.junit.Assert.assertNotNull;
 import static tn.esprit.spring.entities.Ville.RADES;
 import static tn.esprit.spring.entities.Ville.sfax;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class VoyageServiceImplTest {
 
-    @Autowired
-    IVoyageService VoyageService;
 
-    @Test
-    public Voyage testAddVoyage() {
-        Voyage s = new Voyage(10L,RADES,sfax,10.0,11.0);
-        VoyageService.ajouterVoyage(s);
-
-        assertNotNull(s);
-          return s;
-    }
 
 
 }
