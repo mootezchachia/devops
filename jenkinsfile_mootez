@@ -51,6 +51,15 @@ stages{
             }
         }
 
+        stage('Build docker image'){
+            steps{
+                script{
+                    sh 'docker build -t mootezchachia/devops .'
+                }
+            }
+        }
+	
+	
         stage('Push image to Hub'){
             steps{
                 script{
@@ -63,13 +72,7 @@ stages{
             }
         }
 
-        stage('Build docker image'){
-            steps{
-                script{
-                    sh 'docker build -t mootezchachia/devops .'
-                }
-            }
-        }
+
 	      
 
         
