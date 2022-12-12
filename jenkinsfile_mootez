@@ -54,7 +54,7 @@ stages{
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t mootezchachia/devops .'
+                    sh 'docker build -t mootezchachia1/devops .'
                 }
             }
         }
@@ -74,7 +74,7 @@ stages{
         stage("docker puch") {
             steps {
                 script {
-                    sh 'docker push mootezchachia/devops:latest'
+                    sh 'docker push mootezchachia1/devops:latest'
                 }
             }
         }
