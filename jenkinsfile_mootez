@@ -6,8 +6,7 @@ pipeline{
      maven 'M2_HOME'
   }
      
-        
-        stages{
+stages{
 
             stage('clean') {
                 steps {
@@ -80,7 +79,7 @@ pipeline{
             }
         }
         
-        stage("build jar") {
+        stage("docker up") {
             steps {
                 script {
                     sh "docker up"
