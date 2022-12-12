@@ -41,13 +41,13 @@ pipeline{
                	 }
               }
 
-                stage('nexus'){
+          stage('nexus'){
             steps{
                 script{
                     sh 'mnv deploy'
                 }
             }
-        }
+          }
 
 
 		stage("build jar") {
@@ -67,12 +67,13 @@ pipeline{
                 }
             }
         }
-	        stage('Push image to Hub'){
+	      
+        stage('Push image to Hub'){
             steps{
                 script{
-		withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+		        withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
                    sh 'docker login -u mootezchachia -p $dockerhubpwd docker.io'
-}
+            }
 
                    sh 'docker push mootezchachia/springprojet:latest'
                 }
@@ -88,6 +89,5 @@ pipeline{
         }
 
 
-}
 }
 }
