@@ -43,7 +43,7 @@ stages{
           stage('nexus'){
             steps{
                 script{
-                    sh 'mnv deploy'
+                    sh 'mvn deploy'
                 }
             }
           }
