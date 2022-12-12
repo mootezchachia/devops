@@ -85,7 +85,7 @@ stages{
         stage("docker up") {
             steps {
                 script {
-                    sh "docker up"
+                    sh "docker-compose up"
                 }
             }
         }
